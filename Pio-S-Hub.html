@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بروفايل المدرّس — Pioneers Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Pio-S-Hub.css">
+</head>
+<body>
+
+<div class="bg-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="Pio-Hub.html" class="logo">
+      <div class="logo-icon">⭐</div>
+      <div class="logo-text">
+        <span class="logo-main">Pioneers</span>
+        <span class="logo-sub">Academy</span>
+      </div>
+    </a>
+
+    <a href="Pio-Hub.html" class="btn-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+      كل المدرّسين
+    </a>
+
+    <div class="nav-actions">
+      <button class="btn-kids-toggle" id="kidsToggle">🎨 <span class="kids-label">ثيم الأطفال</span></button>
+
+      <div class="contact-dropdown">
+        <button class="btn-contact">تواصل معنا
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="contact-menu">
+          <a href="https://wa.me/201000000000" target="_blank" class="contact-item">
+            <span>📱</span><div><div class="contact-name">واتساب</div><div class="contact-num">01000000000</div></div>
+          </a>
+          <a href="tel:01000000000" class="contact-item">
+            <span>📞</span><div><div class="contact-name">تليفون</div><div class="contact-num">01000000000</div></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Parent Auth -->
+      <button class="btn-parent-auth" id="btnParentAuth">
+        <span id="parentAuthIcon">👤</span>
+        <span id="parentAuthLabel">دخول ولي الأمر</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- LOADING -->
+<div class="page-loading" id="pageLoading">
+  <div class="loader-ring"></div>
+  <p>جاري تحميل بروفايل المدرّس...</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="main-content" id="mainContent" style="display:none">
+
+  <!-- TEACHER HERO -->
+  <section class="teacher-hero">
+    <div class="hero-inner">
+
+      <!-- صورة + بيانات أساسية -->
+      <div class="teacher-profile-card">
+        <div class="teacher-avatar-wrap">
+          <div class="teacher-avatar" id="teacherAvatar"></div>
+          <div class="subject-badge" id="teacherSubject"></div>
+        </div>
+
+        <div class="teacher-info">
+          <h1 class="teacher-name" id="teacherName">...</h1>
+
+          <!-- تقييم النجوم -->
+          <div class="rating-row">
+            <div class="stars-big" id="teacherStars"></div>
+            <span class="rating-val" id="teacherRating">0.0</span>
+            <span class="rating-count" id="teacherRatingCount">(0 تقييم)</span>
+          </div>
+
+          <!-- لايك -->
+          <div class="likes-row">
+            <button class="btn-like" id="btnLike">
+              <span class="like-heart" id="likeHeart">🤍</span>
+              <span id="likesCount">0</span> إعجاب
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- زرار الحجز — دايماً ظاهر -->
+      <button class="btn-book-hero" id="btnBookHero">
+        <span>📅</span> احجز مع المدرّس
+      </button>
+
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <div class="tabs-bar">
+    <div class="tabs-inner">
+      <button class="tab-btn active" data-tab="videos">🎬 فيديوهات الشرح</button>
+      <button class="tab-btn" data-tab="exams">📝 الامتحانات والأسئلة</button>
+      <button class="tab-btn" data-tab="rate">⭐ قيّم المدرّس</button>
+      <button class="tab-btn" data-tab="children">👨‍👧 متابعة أولادك</button>
+    </div>
+  </div>
+
+  <div class="tabs-content">
+
+    <!-- TAB: فيديوهات -->
+    <div class="tab-panel active" id="tab-videos">
+      <div class="panel-header">
+        <h2>فيديوهات الشرح</h2>
+        <p>شاهد شرح المدرّس مباشرة</p>
+      </div>
+      <div class="videos-grid" id="videosGrid">
+        <div class="empty-state">
+          <div class="empty-icon">🎬</div>
+          <p>جاري تحميل الفيديوهات...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: امتحانات -->
+    <div class="tab-panel" id="tab-exams">
+      <div class="panel-header">
+        <h2>الامتحانات والأسئلة</h2>
+        <p>اختبر نفسك مع امتحانات المدرّس</p>
+      </div>
+      <div class="exams-grid" id="examsGrid">
+        <div class="empty-state">
+          <div class="empty-icon">📝</div>
+          <p>جاري تحميل الامتحانات...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: تقييم -->
+    <div class="tab-panel" id="tab-rate">
+      <div class="panel-header">
+        <h2>قيّم المدرّس</h2>
+        <p>شاركنا رأيك — تقييمك بيساعد الطلاب التانيين</p>
+      </div>
+      <div class="rate-section" id="rateSection">
+        <div class="stars-picker" id="starsPicker">
+          <p class="stars-hint">اختار تقييمك من 1 لـ 10</p>
+          <div class="stars-10" id="stars10"></div>
+          <div class="stars-label" id="starsLabel">اختار نجمة</div>
+        </div>
+        <button class="btn-submit-rate" id="btnSubmitRate" disabled>إرسال التقييم</button>
+        <div class="rate-note" id="rateNote"></div>
+      </div>
+    </div>
+
+    <!-- TAB: أولادك -->
+    <div class="tab-panel" id="tab-children">
+      <div class="panel-header">
+        <h2>متابعة أولادك</h2>
+        <p>شوف تقدم ابنك مع المدرّس ده</p>
+      </div>
+
+      <!-- لو مش مسجل -->
+      <div class="auth-required" id="authRequired">
+        <div class="auth-icon">🔐</div>
+        <h3>محتاج تسجّل دخول</h3>
+        <p>سجّل دخولك كولي أمر عشان تشوف بيانات أولادك</p>
+        <button class="btn-auth-login" onclick="openModal('parentModal')">دخول ولي الأمر</button>
+      </div>
+
+      <!-- لو مسجل — بيانات الأولاد -->
+      <div class="children-section" id="childrenSection" style="display:none">
+        <div class="children-grid" id="childrenGrid"></div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- زرار إسراء -->
+<button class="btn-esraa" id="btnEsraa">
+  <span>💌</span>
+  <span class="esraa-text">ابعت لمس إسراء</span>
+</button>
+
+<!-- ===================================================
+     MODAL: Parent Auth
+     =================================================== -->
+<div class="modal-overlay" id="parentModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('parentModal')">✕</button>
+
+    <!-- تابات Login / Register -->
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-auth="login" onclick="switchAuthTab('login')">دخول</button>
+      <button class="auth-tab" data-auth="register" onclick="switchAuthTab('register')">حساب جديد</button>
+    </div>
+
+    <!-- Login Form -->
+    <div class="auth-form" id="loginForm">
+      <div class="modal-icon">👤</div>
+      <h3 class="modal-title">أهلاً بيك</h3>
+      <input type="email" id="loginEmail" class="modal-input" placeholder="الإيميل">
+      <input type="password" id="loginPassword" class="modal-input" placeholder="الباسورد">
+      <button class="modal-btn" onclick="doLogin()">دخول</button>
+      <div class="modal-error" id="loginError"></div>
+    </div>
+
+    <!-- Register Form -->
+    <div class="auth-form" id="registerForm" style="display:none">
+      <div class="modal-icon">✨</div>
+      <h3 class="modal-title">حساب جديد</h3>
+      <input type="text" id="regName" class="modal-input" placeholder="اسمك كامل">
+      <input type="email" id="regEmail" class="modal-input" placeholder="الإيميل">
+      <input type="password" id="regPassword" class="modal-input" placeholder="الباسورد">
+      <input type="tel" id="regWhatsapp" class="modal-input" placeholder="رقم الواتساب">
+      <div class="cash-phones-section">
+        <label class="cash-label">أرقام الكاش (مهمة للتحقق من الدفع)</label>
+        <div id="cashPhonesContainer">
+          <div class="cash-phone-row">
+            <input type="tel" class="modal-input cash-phone" placeholder="رقم كاش 1">
+            <button class="btn-add-phone" onclick="addCashPhone()">+</button>
+          </div>
+        </div>
+      </div>
+      <button class="modal-btn" onclick="doRegister()">إنشاء الحساب</button>
+      <div class="modal-error" id="registerError"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================================================
+     MODAL: Booking — سلايدز
+     =================================================== -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal modal-booking">
+    <button class="modal-close" onclick="closeModal('bookingModal')">✕</button>
+
+    <!-- Progress bar -->
+    <div class="booking-progress">
+      <div class="progress-fill" id="bookingProgress"></div>
+    </div>
+
+    <div class="booking-slides" id="bookingSlides">
+
+      <!-- سلايد 1: اختيار الخطة -->
+      <div class="b-slide active" data-slide="1">
+        <div class="slide-emoji">📋</div>
+        <h3 class="slide-title">اختار الخطة</h3>
+        <p class="slide-desc">كل محاضرة من ساعة لساعة ونص أونلاين</p>
+        <div class="plan-options">
+          <div class="plan-card" data-plan="4" onclick="selectPlan(this)">
+            <div class="plan-icon">🌙</div>
+            <div class="plan-name">4 محاضرات</div>
+            <div class="plan-sub">شهرياً</div>
+          </div>
+          <div class="plan-card" data-plan="8" onclick="selectPlan(this)">
+            <div class="plan-icon">🌟</div>
+            <div class="plan-name">8 محاضرات</div>
+            <div class="plan-sub">شهرياً — الأكثر شيوعاً</div>
+            <div class="plan-badge">مميّز</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- سلايد 2: المواعيد -->
+      <div class="b-slide" data-slide="2">
+        <div class="slide-emoji">📅</div>
+        <h3 class="slide-title">اختار موعدك المفضل</h3>
+        <div class="slots-grid" id="slotsGrid"></div>
+        <button class="slide-btn" id="btnNextSlot" onclick="bookingNext()" disabled>التالي ←</button>
+      </div>
+
+      <!-- سلايد 3: بيانات ولي الأمر -->
+      <div class="b-slide" data-slide="3">
+        <div class="slide-emoji">👤</div>
+        <h3 class="slide-title">بياناتك</h3>
+        <input type="text" id="bkParentName" class="modal-input" placeholder="اسمك كامل">
+        <input type="tel" id="bkParentPhone" class="modal-input" placeholder="رقم التليفون">
+        <input type="tel" id="bkParentWhatsapp" class="modal-input" placeholder="رقم الواتساب">
+
+        <div class="how-knew-section">
+          <label class="cash-label">إزاي عرفت عن الأكاديمية؟</label>
+          <select id="bkHowKnew" class="modal-select">
+            <option value="">اختار...</option>
+            <option value="فيسبوك">فيسبوك</option>
+            <option value="انستجرام">انستجرام</option>
+            <option value="يوتيوب">يوتيوب</option>
+            <option value="تيك توك">تيك توك</option>
+            <option value="ترشيح من صديق">ترشيح من صديق أو معارف</option>
+            <option value="بحث جوجل">بحث على جوجل</option>
+            <option value="أخرى">أخرى</option>
+          </select>
+        </div>
+
+        <button class="slide-btn" onclick="bookingNext()">التالي ←</button>
+      </div>
+
+      <!-- سلايد 4: عدد الطلاب -->
+      <div class="b-slide" data-slide="4">
+        <div class="slide-emoji">👨‍👩‍👧‍👦</div>
+        <h3 class="slide-title">كم طالب؟</h3>
+        <div class="students-counter">
+          <button class="counter-btn" onclick="changeStudentCount(-1)">−</button>
+          <span class="counter-val" id="studentsCount">1</span>
+          <button class="counter-btn" onclick="changeStudentCount(1)">+</button>
+        </div>
+        <button class="slide-btn" onclick="buildStudentSlides()">التالي ←</button>
+      </div>
+
+      <!-- سلايدز الطلاب — بتتبنى داينامياً -->
+      <div id="dynamicStudentSlides"></div>
+
+      <!-- سلايد أخير: ملخص + دفع -->
+      <div class="b-slide" data-slide="summary">
+        <div class="slide-emoji">💳</div>
+        <h3 class="slide-title">ملخص الحجز</h3>
+        <div class="summary-card" id="summaryCard"></div>
+        <div class="amount-display">
+          <span>المبلغ الإجمالي</span>
+          <span class="amount-num" id="summaryAmount">0 ج.م</span>
+        </div>
+        <button class="slide-btn btn-pay" onclick="submitBooking()">
+          <span>ادفع بفودافون كاش 📱</span>
+        </button>
+        <div class="vodafone-note">
+          بعد الضغط هيتفتح تطبيق فودافون كاش تلقائياً
+        </div>
+      </div>
+
+      <!-- سلايد: تأكيد الدفع -->
+      <div class="b-slide" data-slide="confirm">
+        <div class="slide-emoji">🎉</div>
+        <h3 class="slide-title">تم استلام طلبك!</h3>
+        <p class="slide-desc">الإدارة هتتواصل معك قريباً على الواتساب لتأكيد الحجز</p>
+        <div class="serial-box" id="serialBox"></div>
+        <button class="slide-btn" onclick="closeModal('bookingModal')">تمام 👍</button>
+      </div>
+
+    </div>
+
+    <!-- Booking dots -->
+    <div class="booking-dots" id="bookingDots"></div>
+  </div>
+</div>
+
+<!-- ===================================================
+     MODAL: Student Details (لولي الأمر)
+     =================================================== -->
+<div class="modal-overlay" id="studentModal">
+  <div class="modal modal-student">
+    <button class="modal-close" onclick="closeModal('studentModal')">✕</button>
+    <div class="student-detail" id="studentDetail"></div>
+  </div>
+</div>
+
+<!-- ===================================================
+     MODAL: إسراء Message
+     =================================================== -->
+<div class="modal-overlay" id="esraaModal">
+  <div class="modal modal-esraa">
+    <button class="modal-close" onclick="closeModal('esraaModal')">✕</button>
+    <div class="slides-container" id="esraaSlides">
+      <div class="slide active" data-slide="1">
+        <div class="slide-emoji">👋</div>
+        <h3 class="slide-title">أهلاً <span id="parentGreeting">بيك</span>!</h3>
+        <p class="slide-desc">رسالتك هتوصل لـ <strong>مس إسراء</strong> مباشرةً</p>
+        <button class="slide-btn-esraa" onclick="esraaNext()">هنبدأ ←</button>
+      </div>
+      <div class="slide" data-slide="2">
+        <div class="slide-emoji">📝</div>
+        <h3 class="slide-title">إيه نوع رسالتك؟</h3>
+        <div class="type-options">
+          <button class="type-btn" data-type="اقتراح" onclick="selectType(this)">💡 اقتراح</button>
+          <button class="type-btn" data-type="استفسار" onclick="selectType(this)">❓ استفسار</button>
+          <button class="type-btn" data-type="شكوى" onclick="selectType(this)">😟 شكوى</button>
+          <button class="type-btn" data-type="أخرى" onclick="selectType(this)">💬 أخرى</button>
+        </div>
+      </div>
+      <div class="slide" data-slide="3">
+        <div class="slide-emoji">✍️</div>
+        <h3 class="slide-title">اكتب رسالتك</h3>
+        <textarea class="slide-textarea" id="esraaMessage" placeholder="اكتب هنا..."></textarea>
+        <button class="slide-btn-esraa" onclick="sendEsraaMessage()">إرسال 💌</button>
+      </div>
+      <div class="slide" data-slide="4">
+        <div class="slide-emoji">✅</div>
+        <h3 class="slide-title">وصلت رسالتك!</h3>
+        <p class="slide-desc">مس إسراء هتشوفها وهترد عليك قريباً</p>
+        <button class="slide-btn-esraa" onclick="closeModal('esraaModal')">تمام 👍</button>
+      </div>
+    </div>
+    <div class="slide-dots" id="esraaDots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================
+     MODAL: Exam Player
+     =================================================== -->
+<div class="modal-overlay" id="examModal">
+  <div class="modal modal-exam">
+    <button class="modal-close" onclick="closeExam()">✕</button>
+    <div class="exam-header">
+      <div class="exam-title" id="examTitle"></div>
+      <div class="exam-progress-text" id="examProgressText"></div>
+    </div>
+    <div class="exam-timer" id="examTimer"></div>
+    <div class="exam-question" id="examQuestion"></div>
+    <div class="exam-options" id="examOptions"></div>
+    <div class="exam-feedback" id="examFeedback" style="display:none"></div>
+    <button class="exam-next-btn" id="examNextBtn" onclick="nextQuestion()" style="display:none">التالي ←</button>
+    <div class="exam-result" id="examResult" style="display:none"></div>
+  </div>
+</div>
+
+<script src="Pio-S-Hub.js"></script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بورتال المدرّسين — Pioneers Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Pio-T-Hub.css">
+</head>
+<body>
+
+<div class="bg-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="Pio-Hub.html" class="logo">
+      <div class="logo-icon">⭐</div>
+      <div class="logo-text">
+        <span class="logo-main">Pioneers</span>
+        <span class="logo-sub">Academy</span>
+      </div>
+    </a>
+
+    <div class="nav-center" id="navCenter"></div>
+
+    <div class="nav-actions">
+      <button class="btn-kids-toggle" id="kidsToggle">🎨 <span class="kids-label">ثيم الأطفال</span></button>
+      <button class="btn-logout" id="btnLogout" style="display:none" onclick="logoutTeacher()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        خروج
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- =====================================================
+     GATE — دخول / تسجيل
+     ===================================================== -->
+<section class="gate-section" id="gateSection">
+  <div class="gate-card">
+
+    <!-- تابات Gate -->
+    <div class="gate-tabs">
+      <button class="gate-tab active" data-tab="login" onclick="switchGateTab('login')">
+        🔑 دخول بالكود
+      </button>
+      <button class="gate-tab" data-tab="register" onclick="switchGateTab('register')">
+        ✨ تسجيل جديد
+      </button>
+    </div>
+
+    <!-- Login -->
+    <div class="gate-form" id="gateLogin">
+      <div class="gate-icon">🎓</div>
+      <h2 class="gate-title">أهلاً بيك في بورتال المدرّسين</h2>
+      <p class="gate-desc">ادخل الكود بتاعك عشان توصل لبروفايلك</p>
+      <div class="code-input-wrap">
+        <input type="text" id="teacherCode" class="code-input" placeholder="AH123456"
+               maxlength="8" autocomplete="off" oninput="this.value=this.value.toUpperCase()">
+      </div>
+      <button class="gate-btn" onclick="doTeacherLogin()">دخول ←</button>
+      <div class="gate-error" id="loginError"></div>
+    </div>
+
+    <!-- Register -->
+    <div class="gate-form" id="gateRegister" style="display:none">
+      <div class="gate-icon">🌟</div>
+      <h2 class="gate-title">سجّل كمدرّس في Pioneers</h2>
+      <p class="gate-desc">بعد التسجيل هتستلم كودك وبياناتك هتتراجع من الإدارة</p>
+
+      <div class="form-grid">
+        <input type="text"  id="regFullName" class="gate-input" placeholder="الاسم الكامل (مطلوب)">
+        <input type="tel"   id="regPhone"    class="gate-input" placeholder="رقم التليفون (مطلوب)">
+        <input type="tel"   id="regWhatsapp" class="gate-input" placeholder="رقم الواتساب">
+        <input type="text"  id="regSubjects" class="gate-input" placeholder="المواد اللي بتدرّسها">
+        <div class="photo-upload-wrap">
+          <label class="photo-upload-label" id="photoLabel">
+            <span class="photo-upload-icon">📷</span>
+            <span id="photoLabelText">ارفع صورتك</span>
+            <input type="file" id="regPhoto" accept="image/*" style="display:none" onchange="previewPhoto(this)">
+          </label>
+          <img id="photoPreview" style="display:none" alt="preview">
+        </div>
+      </div>
+
+      <button class="gate-btn" onclick="doTeacherRegister()">إنشاء حساب ←</button>
+      <div class="gate-error" id="registerError"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================================================
+     DASHBOARD — بعد الدخول
+     ===================================================== -->
+<main class="dashboard" id="dashboard" style="display:none">
+
+  <!-- PROFILE HEADER -->
+  <section class="profile-header">
+    <div class="profile-inner">
+      <div class="profile-avatar-wrap">
+        <div class="profile-avatar" id="profileAvatar"></div>
+        <div class="profile-status" id="profileStatus"></div>
+      </div>
+      <div class="profile-info">
+        <div class="profile-code" id="profileCode"></div>
+        <h1 class="profile-name" id="profileName"></h1>
+        <div class="profile-subject" id="profileSubject"></div>
+        <div class="profile-stats">
+          <div class="pstat"><span class="pstat-val" id="statGroups">0</span><span class="pstat-label">جروبات</span></div>
+          <div class="pstat"><span class="pstat-val" id="statStudents">0</span><span class="pstat-label">طلاب</span></div>
+          <div class="pstat"><span class="pstat-val" id="statVideos">0</span><span class="pstat-label">فيديوهات</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <div class="tabs-bar">
+    <div class="tabs-inner">
+      <button class="tab-btn active" data-tab="groups">👥 الجروبات والطلاب</button>
+      <button class="tab-btn" data-tab="videos">🎬 الفيديوهات</button>
+      <button class="tab-btn" data-tab="content">📁 المحتوى</button>
+      <button class="tab-btn" data-tab="profile">⚙️ بروفايلي</button>
+    </div>
+  </div>
+
+  <div class="tabs-content">
+
+    <!-- TAB: الجروبات -->
+    <div class="tab-panel active" id="tab-groups">
+      <div class="panel-header">
+        <div>
+          <h2>الجروبات والطلاب</h2>
+          <p>اختار جروب عشان تشوف طلابه وتقيّمهم</p>
+        </div>
+      </div>
+      <div class="groups-list" id="groupsList">
+        <div class="loading-inline"><div class="loader-ring-sm"></div> جاري التحميل...</div>
+      </div>
+    </div>
+
+    <!-- TAB: فيديوهات -->
+    <div class="tab-panel" id="tab-videos">
+      <div class="panel-header">
+        <div>
+          <h2>الفيديوهات</h2>
+          <p>ارفع فيديوهاتك — الإدارة هتراجعها وتنشرها على بروفايلك</p>
+        </div>
+      </div>
+
+      <!-- رفع فيديو -->
+      <div class="upload-card">
+        <div class="upload-icon">☁️</div>
+        <h3>ارفع فيديو جديد</h3>
+        <p>الفيديو بيتحفظ أولاً للمراجعة — وبعد موافقة الإدارة بيظهر على بروفايلك</p>
+        <div class="upload-inputs">
+          <input type="text" id="videoTitle" class="gate-input" placeholder="عنوان الفيديو">
+          <div class="file-drop-zone" id="fileDropZone" onclick="document.getElementById('videoFile').click()">
+            <span id="dropZoneText">اضغط هنا أو اسحب الفيديو</span>
+            <input type="file" id="videoFile" accept="video/*" style="display:none" onchange="handleVideoFile(this)">
+          </div>
+        </div>
+        <div class="upload-progress-wrap" id="uploadProgressWrap" style="display:none">
+          <div class="upload-progress-bar" id="uploadProgressBar"></div>
+          <span id="uploadProgressText">0%</span>
+        </div>
+        <button class="gate-btn" onclick="uploadVideo()">رفع الفيديو ↑</button>
+        <div class="upload-note">📌 بعد الرفع انتظر موافقة مس إسراء</div>
+      </div>
+
+      <!-- فيديوهات المنشورة -->
+      <div class="panel-header" style="margin-top:40px">
+        <div>
+          <h2>فيديوهاتك المنشورة</h2>
+          <p>الفيديوهات اللي وافقت عليها الإدارة وظاهرة على بروفايلك</p>
+        </div>
+      </div>
+      <div class="videos-grid" id="teacherVideosGrid">
+        <div class="loading-inline"><div class="loader-ring-sm"></div> جاري التحميل...</div>
+      </div>
+    </div>
+
+    <!-- TAB: المحتوى -->
+    <div class="tab-panel" id="tab-content">
+      <div class="panel-header">
+        <div>
+          <h2>ملفات المحتوى</h2>
+          <p>ارفع أسئلة، تمارين، أو شرح — الإدارة هتضيفها على بروفايلك</p>
+        </div>
+      </div>
+
+      <div class="upload-card">
+        <div class="upload-icon">📂</div>
+        <h3>ارفع ملف محتوى</h3>
+        <p>Word أو PDF — أسئلة، تمارين، أو شرح</p>
+        <div class="upload-inputs">
+          <input type="text" id="contentTitle" class="gate-input" placeholder="اسم الملف أو الموضوع">
+          <select id="contentType" class="gate-input gate-select">
+            <option value="أسئلة">أسئلة وتمارين</option>
+            <option value="شرح">شرح</option>
+            <option value="امتحان">امتحان</option>
+            <option value="أخرى">أخرى</option>
+          </select>
+          <div class="file-drop-zone" id="contentDropZone" onclick="document.getElementById('contentFile').click()">
+            <span id="contentDropText">اضغط هنا أو اسحب الملف (PDF أو Word)</span>
+            <input type="file" id="contentFile" accept=".pdf,.doc,.docx" style="display:none" onchange="handleContentFile(this)">
+          </div>
+        </div>
+        <button class="gate-btn" onclick="uploadContent()">رفع الملف ↑</button>
+        <div class="upload-note">📌 الملفات بتتراجع من الإدارة قبل النشر</div>
+      </div>
+    </div>
+
+    <!-- TAB: بروفايلي -->
+    <div class="tab-panel" id="tab-profile">
+      <div class="panel-header">
+        <div><h2>بروفايلي</h2><p>بياناتك الأساسية</p></div>
+      </div>
+      <div class="profile-edit-card" id="profileEditCard"></div>
+    </div>
+
+  </div>
+</main>
+
+<!-- =====================================================
+     MODAL: Students in Group
+     ===================================================== -->
+<div class="modal-overlay" id="studentsModal">
+  <div class="modal modal-students">
+    <button class="modal-close" onclick="closeModal('studentsModal')">✕</button>
+    <div class="modal-group-header" id="modalGroupHeader"></div>
+    <div class="students-grid" id="studentsGrid"></div>
+  </div>
+</div>
+
+<!-- =====================================================
+     MODAL: Rating Form
+     ===================================================== -->
+<div class="modal-overlay" id="ratingModal">
+  <div class="modal modal-rating">
+    <button class="modal-close" onclick="closeModal('ratingModal')">✕</button>
+    <div class="rating-student-header" id="ratingStudentHeader"></div>
+
+    <div class="rating-form">
+      <div class="rating-row-item">
+        <label>نسبة الحضور الكلي</label>
+        <div class="slider-wrap">
+          <input type="range" min="0" max="100" value="80" class="rating-slider" id="r_attend"
+                 oninput="updateSliderVal('attend',this.value)">
+          <span class="slider-val" id="val_attend">80%</span>
+        </div>
+      </div>
+      <div class="rating-row-item">
+        <label>نسبة التركيز خلال المحاضرة</label>
+        <div class="slider-wrap">
+          <input type="range" min="0" max="100" value="80" class="rating-slider" id="r_focus"
+                 oninput="updateSliderVal('focus',this.value)">
+          <span class="slider-val" id="val_focus">80%</span>
+        </div>
+      </div>
+      <div class="rating-row-item">
+        <label>نسبة الالتزام بالمواعيد</label>
+        <div class="slider-wrap">
+          <input type="range" min="0" max="100" value="80" class="rating-slider" id="r_commit"
+                 oninput="updateSliderVal('commit',this.value)">
+          <span class="slider-val" id="val_commit">80%</span>
+        </div>
+      </div>
+      <div class="rating-row-item">
+        <label>نسبة نجاح الهوم وورك</label>
+        <div class="slider-wrap">
+          <input type="range" min="0" max="100" value="80" class="rating-slider" id="r_hw"
+                 oninput="updateSliderVal('hw',this.value)">
+          <span class="slider-val" id="val_hw">80%</span>
+        </div>
+      </div>
+      <div class="rating-row-item">
+        <label>نسبة الحضور الأسبوع ده</label>
+        <div class="slider-wrap">
+          <input type="range" min="0" max="100" value="100" class="rating-slider" id="r_weekly"
+                 oninput="updateSliderVal('weekly',this.value)">
+          <span class="slider-val" id="val_weekly">100%</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="gate-btn" onclick="submitRating()">💾 حفظ التقييم</button>
+    <div class="rating-success" id="ratingSuccess" style="display:none">✅ تم حفظ التقييم بنجاح!</div>
+  </div>
+</div>
+
+<!-- زرار إسراء -->
+<button class="btn-esraa" id="btnEsraa">
+  <span>💌</span>
+  <span class="esraa-text">ابعت لمس إسراء</span>
+</button>
+
+<!-- MODAL: إسراء -->
+<div class="modal-overlay" id="esraaModal">
+  <div class="modal modal-esraa">
+    <button class="modal-close" onclick="closeModal('esraaModal')">✕</button>
+    <div class="slides-container" id="esraaSlides">
+      <div class="slide active" data-slide="1">
+        <div class="slide-emoji">👋</div>
+        <h3 class="slide-title">أهلاً <span id="teacherGreeting"></span>!</h3>
+        <p class="slide-desc">رسالتك هتوصل لـ <strong>مس إسراء</strong> مباشرةً</p>
+        <button class="slide-btn-esraa" onclick="esraaNext()">هنبدأ ←</button>
+      </div>
+      <div class="slide" data-slide="2">
+        <div class="slide-emoji">📝</div>
+        <h3 class="slide-title">إيه نوع رسالتك؟</h3>
+        <div class="type-options">
+          <button class="type-btn" data-type="اقتراح" onclick="selectType(this)">💡 اقتراح</button>
+          <button class="type-btn" data-type="استفسار" onclick="selectType(this)">❓ استفسار</button>
+          <button class="type-btn" data-type="شكوى" onclick="selectType(this)">😟 شكوى</button>
+          <button class="type-btn" data-type="أخرى" onclick="selectType(this)">💬 أخرى</button>
+        </div>
+      </div>
+      <div class="slide" data-slide="3">
+        <div class="slide-emoji">✍️</div>
+        <h3 class="slide-title">اكتب رسالتك</h3>
+        <textarea class="slide-textarea" id="esraaMessage" placeholder="اكتب هنا..."></textarea>
+        <button class="slide-btn-esraa" onclick="sendEsraaMessage()">إرسال 💌</button>
+      </div>
+      <div class="slide" data-slide="4">
+        <div class="slide-emoji">✅</div>
+        <h3 class="slide-title">وصلت رسالتك!</h3>
+        <p class="slide-desc">مس إسراء هتشوفها وهترد عليك قريباً</p>
+        <button class="slide-btn-esraa" onclick="closeModal('esraaModal')">تمام 👍</button>
+      </div>
+    </div>
+    <div class="slide-dots" id="esraaDots">
+      <div class="dot active"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+  </div>
+</div>
+
+<script src="Pio-T-Hub.js"></script>
+</body>
+</html>

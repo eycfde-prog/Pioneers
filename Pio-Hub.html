@@ -1,176 +1,220 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pioneers Platform — أكاديمية بايونيرز</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="Pio-Hub.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pioneers Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Pio-Hub.css">
 </head>
 <body>
 
-<!-- ===== KIDS THEME DECORATIONS (hidden by default) ===== -->
-<div class="kids-deco" id="kidsDeco" aria-hidden="true">
-  <div class="deco-sun">☀️</div>
-  <div class="deco-cloud deco-cloud-1">☁️</div>
-  <div class="deco-cloud deco-cloud-2">☁️</div>
-  <div class="deco-cloud deco-cloud-3">⛅</div>
-  <div class="deco-rainbow">🌈</div>
-  <div class="deco-star deco-star-1">⭐</div>
-  <div class="deco-star deco-star-2">✨</div>
-  <div class="deco-star deco-star-3">🌟</div>
-  <div class="deco-balloon deco-balloon-1">🎈</div>
-  <div class="deco-balloon deco-balloon-2">🎀</div>
+<!-- خلفية متحركة -->
+<div class="bg-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
 </div>
 
-<!-- ===== HEADER ===== -->
-<header id="mainHeader">
-  <div class="header-inner">
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
 
-<!-- Logo مع إطار وظل داخلي -->
-<a href="Pio-Hub.html" class="logo-link">
-  <img src="logo.png" alt="Pioneers Logo" id="logoIcon" 
-       style="width: 50px; height: 50px; border: 2px solid #FFD700; border-radius: 12px; padding: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); background: rgba(255,255,255,0.05);">
-  <div class="logo-text">
-    <span class="brand">Pioneers</span>
-    <span class="sub">ACADEMY PLATFORM</span>
-  </div>
-</a>
-    <!-- Actions -->
+    <!-- لوجو -->
+    <a href="Pio-Hub.html" class="logo">
+      <div class="logo-icon">⭐</div>
+      <div class="logo-text">
+        <span class="logo-main">Pioneers</span>
+        <span class="logo-sub">Academy</span>
+      </div>
+    </a>
+
+    <!-- أزرار يمين -->
     <div class="nav-actions">
 
-      <!-- Contact Dropdown -->
-      <div class="dropdown" id="contactDropdown">
-        <button class="dropdown-btn" onclick="toggleDropdown()">
-          تواصل معنا
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
+      <!-- ثيم الأطفال -->
+      <button class="btn-kids-toggle" id="kidsToggle" title="ثيم الأطفال">
+        <span class="kids-icon">🎨</span>
+        <span class="kids-label">ثيم الأطفال</span>
+      </button>
+
+      <!-- تواصل معنا -->
+      <div class="contact-dropdown">
+        <button class="btn-contact">
+          <span>تواصل معنا</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="dropdown-menu">
+        <div class="contact-menu">
           <a href="https://wa.me/201000000000" target="_blank" class="contact-item">
-            <span class="ci-icon">📱</span>
+            <span class="contact-icon">📱</span>
             <div>
-              <span>واتساب</span>
-              <span class="contact-label">+20 100 000 0000</span>
+              <div class="contact-name">واتساب</div>
+              <div class="contact-num">01000000000</div>
             </div>
           </a>
-          <a href="tel:+201000000000" class="contact-item">
-            <span class="ci-icon">📞</span>
+          <a href="tel:01000000000" class="contact-item">
+            <span class="contact-icon">📞</span>
             <div>
-              <span>اتصال مباشر</span>
-              <span class="contact-label">+20 100 000 0000</span>
+              <div class="contact-name">تليفون</div>
+              <div class="contact-num">01000000000</div>
             </div>
           </a>
-          <a href="https://www.facebook.com" target="_blank" class="contact-item">
-            <span class="ci-icon">📘</span>
+          <a href="https://facebook.com" target="_blank" class="contact-item">
+            <span class="contact-icon">💬</span>
             <div>
-              <span>فيسبوك</span>
-              <span class="contact-label">Pioneers Academy</span>
+              <div class="contact-name">فيسبوك</div>
+              <div class="contact-num">Pioneers Academy</div>
             </div>
           </a>
         </div>
       </div>
 
-      <!-- Hidden Teacher Login -->
-      <button class="teacher-login-btn" onclick="openLoginModal()" title="دخول المدرسين">🎓</button>
+      <!-- زرار مخفي للتيتشر -->
+      <button class="btn-teacher-hidden" id="teacherBtn" title="بوابة المدرسين">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </button>
+
     </div>
   </div>
-</header>
+</nav>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="heroSection">
-  <div class="hero-badge" id="heroBadge">
-    <span class="badge-icon">✦</span>
-    أكاديمية بايونيرز — التعليم الرقمي
-  </div>
-  <h1 id="heroTitle">اختار <span class="accent" id="heroAccent">مدرّسك</span><br/>وابدأ رحلتك</h1>
-  <p class="hero-sub" id="heroSub">منصة تعليمية متكاملة — شرح تفاعلي وامتحانات ذكية مع أفضل المدرّسين</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">منصة التعليم الأونلاين</div>
+    <h1 class="hero-title">
+      تعلّم مع
+      <span class="hero-highlight">أفضل المدرسين</span>
+      <br>من بيتك
+    </h1>
+    <p class="hero-desc">اختار مدرّسك المفضل، تابع محاضراته، وحل امتحاناتك — كل ده أونلاين وفي راحتك</p>
 
-  <!-- Search -->
-  <div class="search-wrap">
-    <input
-      type="text"
-      class="search-input"
-      id="searchInput"
-      placeholder="ابحث عن مدرّس أو مادة..."
-      oninput="filterCards()"
-    />
-    <span class="search-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+    <!-- بحث -->
+    <div class="search-box">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
       </svg>
-    </span>
-  </div>
+      <input type="text" id="searchInput" placeholder="ابحث عن مدرّس أو مادة..." class="search-input">
+      <button class="search-clear" id="searchClear">✕</button>
+    </div>
 
-  <!-- Filter chips -->
-  <div class="filter-row">
-    <button class="chip active" data-filter="all"     onclick="setFilter(this,'all')">الكل</button>
-    <button class="chip"        data-filter="math"    onclick="setFilter(this,'math')">رياضيات</button>
-    <button class="chip"        data-filter="science" onclick="setFilter(this,'science')">علوم</button>
-    <button class="chip"        data-filter="arabic"  onclick="setFilter(this,'arabic')">عربي / لغات</button>
-    <button class="chip"        data-filter="history" onclick="setFilter(this,'history')">تاريخ / جغرافيا</button>
-    <button class="chip"        data-filter="cs"      onclick="setFilter(this,'cs')">حاسب آلي</button>
+    <!-- فلاتر المواد -->
+    <div class="filters-row">
+      <button class="filter-btn active" data-filter="all">الكل</button>
+      <button class="filter-btn" data-filter="رياضيات">رياضيات</button>
+      <button class="filter-btn" data-filter="علوم">علوم</button>
+      <button class="filter-btn" data-filter="عربي">عربي</button>
+      <button class="filter-btn" data-filter="لغة إنجليزية">إنجليزي</button>
+      <button class="filter-btn" data-filter="تاريخ">تاريخ</button>
+      <button class="filter-btn" data-filter="حاسب آلي">حاسب</button>
+    </div>
   </div>
 </section>
 
-<!-- ===== TEACHERS SECTION ===== -->
-<section class="section">
+<!-- TEACHERS SECTION -->
+<section class="teachers-section">
   <div class="section-header">
-    <h2 class="section-title">المدرّسون <span class="accent">المتاحون</span></h2>
-    <span class="count-badge" id="countBadge">0 مدرّس</span>
+    <h2 class="section-title">مدرّسينا</h2>
+    <div class="teachers-count" id="teachersCount">جاري التحميل...</div>
   </div>
 
-  <div class="teachers-grid" id="teachersGrid">
-    <!-- Cards injected by JS -->
+  <!-- Loading -->
+  <div class="loading-state" id="loadingState">
+    <div class="loader-ring"></div>
+    <p>جاري تحميل المدرّسين...</p>
   </div>
 
-  <div class="no-results" id="noResults">
-    <div class="emoji">🔍</div>
-    <p>مفيش نتايج لـ "<span id="noResultsQuery"></span>"</p>
+  <!-- Grid -->
+  <div class="teachers-grid" id="teachersGrid"></div>
+
+  <!-- No Results -->
+  <div class="no-results" id="noResults" style="display:none">
+    <div class="no-results-icon">🔍</div>
+    <p>مفيش نتايج لـ "<span id="searchTerm"></span>"</p>
+    <button class="btn-reset" onclick="resetSearch()">مسح البحث</button>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-  <div class="footer-inner">
-    <span class="footer-brand">🏛️ Pioneers Academy</span>
-    <span class="footer-copy">© 2025 إسراء يسري — جميع الحقوق محفوظة</span>
-  </div>
-</footer>
+<!-- زرار ابعت لمس إسراء -->
+<button class="btn-esraa" id="btnEsraa">
+  <span class="esraa-icon">💌</span>
+  <span class="esraa-text">ابعت لمس إسراء</span>
+</button>
 
-<!-- ===== TEACHER LOGIN MODAL ===== -->
-<div class="modal-overlay" id="loginModal" onclick="closeOnOverlay(event)">
+<!-- MODAL: Teacher Login -->
+<div class="modal-overlay" id="teacherModal">
   <div class="modal">
-    <button class="modal-close" onclick="closeLoginModal()">✕</button>
-    <div class="modal-logo">
-      <div class="modal-logo-icon">🎓</div>
-      <h2>دخول المدرّسين</h2>
-      <p>أدخل بيانات حسابك للوصول إلى لوحة التحكم</p>
-    </div>
-    <div class="form-group">
-      <label class="form-label" for="loginEmail">البريد الإلكتروني</label>
-      <input type="email" id="loginEmail" class="form-input" placeholder="teacher@example.com" />
-    </div>
-    <div class="form-group">
-      <label class="form-label" for="loginPassword">كلمة المرور</label>
-      <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" />
-    </div>
-    <button class="login-btn" onclick="handleLogin()">دخول ←</button>
-    <p class="login-error" id="loginError">البيانات غير صحيحة، حاول مرة أخرى</p>
+    <button class="modal-close" onclick="closeModal('teacherModal')">✕</button>
+    <div class="modal-icon">🎓</div>
+    <h3 class="modal-title">بوابة المدرّسين</h3>
+    <p class="modal-desc">ادخل الكود بتاعك للوصول لبروفايلك</p>
+    <input type="text" id="teacherCode" class="modal-input" placeholder="مثال: AH123456" maxlength="8">
+    <button class="modal-btn" onclick="goToTeacherHub()">دخول</button>
+    <div class="modal-divider">أو</div>
+    <button class="modal-btn modal-btn-outline" onclick="goToTeacherRegister()">سجّل كمدرّس جديد</button>
+    <div class="modal-error" id="teacherError"></div>
   </div>
 </div>
 
-<!-- ===== FLOATING KIDS THEME BUTTON ===== -->
-<button class="kids-fab" id="kidsToggleBtn" onclick="toggleKidsTheme()" title="وضع الأطفال">
-  <span class="kids-fab-icon">🧸</span>
-  <span class="kids-fab-tooltip" id="kidsFabTooltip">وضع الأطفال</span>
-</button>
+<!-- MODAL: إسراء Message -->
+<div class="modal-overlay" id="esraaModal">
+  <div class="modal modal-esraa">
+    <button class="modal-close" onclick="closeModal('esraaModal')">✕</button>
 
-<!-- ===== LIKE TOAST ===== -->
-<div class="like-toast" id="likeToast">❤️ شكراً على تقييمك!</div>
+    <!-- سلايدز الرسالة -->
+    <div class="slides-container" id="esraaSlides">
+
+      <!-- سلايد 1: ترحيب -->
+      <div class="slide active" data-slide="1">
+        <div class="slide-emoji">👋</div>
+        <h3 class="slide-title">أهلاً <span id="parentGreeting">بيك</span>!</h3>
+        <p class="slide-desc">رسالتك هتوصل لـ <strong>مس إسراء</strong> مباشرةً<br>وهي بتهتم بكل رسالة بشكل شخصي</p>
+        <button class="slide-btn" onclick="nextSlide()">هنبدأ ←</button>
+      </div>
+
+      <!-- سلايد 2: نوع الرسالة -->
+      <div class="slide" data-slide="2">
+        <div class="slide-emoji">📝</div>
+        <h3 class="slide-title">إيه نوع رسالتك؟</h3>
+        <div class="type-options">
+          <button class="type-btn" data-type="اقتراح" onclick="selectType(this)">💡 اقتراح</button>
+          <button class="type-btn" data-type="استفسار" onclick="selectType(this)">❓ استفسار</button>
+          <button class="type-btn" data-type="شكوى" onclick="selectType(this)">😟 شكوى</button>
+          <button class="type-btn" data-type="أخرى" onclick="selectType(this)">💬 أخرى</button>
+        </div>
+      </div>
+
+      <!-- سلايد 3: الرسالة -->
+      <div class="slide" data-slide="3">
+        <div class="slide-emoji">✍️</div>
+        <h3 class="slide-title">اكتب رسالتك</h3>
+        <textarea class="slide-textarea" id="esraaMessage" placeholder="اكتب هنا..."></textarea>
+        <button class="slide-btn" onclick="sendEsraaMessage()">إرسال 💌</button>
+      </div>
+
+      <!-- سلايد 4: تأكيد -->
+      <div class="slide" data-slide="4">
+        <div class="slide-emoji">✅</div>
+        <h3 class="slide-title">وصلت رسالتك!</h3>
+        <p class="slide-desc">مس إسراء هتشوفها وهترد عليك قريباً<br>على الواتساب بتاعك</p>
+        <button class="slide-btn" onclick="closeModal('esraaModal')">تمام 👍</button>
+      </div>
+
+    </div>
+
+    <!-- Progress dots -->
+    <div class="slide-dots">
+      <div class="dot active" data-dot="1"></div>
+      <div class="dot" data-dot="2"></div>
+      <div class="dot" data-dot="3"></div>
+      <div class="dot" data-dot="4"></div>
+    </div>
+  </div>
+</div>
 
 <script src="Pio-Hub.js"></script>
 </body>

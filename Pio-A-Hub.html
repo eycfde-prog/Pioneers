@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بورتال الإدارة — Pioneers Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Pio-A-Hub.css">
+</head>
+<body class="theme-dark accent-gold size-md">
+
+<!-- =====================================================
+     GATE — دخول الأدمن
+     ===================================================== -->
+<div class="admin-gate" id="adminGate">
+  <div class="gate-wrap">
+    <div class="gate-logo">⭐</div>
+    <h2>بورتال إسراء</h2>
+    <p>ادخلي الباسورد عشان توصلي للإدارة</p>
+    <input type="password" id="adminPassword" class="gate-password"
+           placeholder="الباسورد..." onkeydown="if(event.key==='Enter') doAdminLogin()">
+    <button class="gate-login-btn" onclick="doAdminLogin()">دخول ←</button>
+    <div class="gate-error" id="gateError"></div>
+  </div>
+</div>
+
+<!-- =====================================================
+     MAIN ADMIN LAYOUT
+     ===================================================== -->
+<div class="admin-layout" id="adminLayout" style="display:none">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">⭐</div>
+      <div class="sidebar-logo-text">
+        <span class="sl-main">Pioneers</span>
+        <span class="sl-sub">Admin Panel</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-tab="overview" onclick="switchTab('overview',this)">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">التقارير</span>
+      </button>
+      <button class="nav-item" data-tab="teachers" onclick="switchTab('teachers',this)">
+        <span class="nav-icon">🎓</span>
+        <span class="nav-label">المدرّسين</span>
+      </button>
+      <button class="nav-item" data-tab="bookings" onclick="switchTab('bookings',this)">
+        <span class="nav-icon">📅</span>
+        <span class="nav-label">الحجوزات</span>
+      </button>
+      <button class="nav-item" data-tab="groups" onclick="switchTab('groups',this)">
+        <span class="nav-icon">👥</span>
+        <span class="nav-label">الجروبات</span>
+      </button>
+      <button class="nav-item" data-tab="parents" onclick="switchTab('parents',this)">
+        <span class="nav-icon">👨‍👩‍👧</span>
+        <span class="nav-label">أولياء الأمور</span>
+      </button>
+      <button class="nav-item" data-tab="inbox" onclick="switchTab('inbox',this)">
+        <span class="nav-icon">💌</span>
+        <span class="nav-label">الإنبوكس</span>
+        <span class="nav-badge" id="inboxBadge" style="display:none">0</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="btn-settings" onclick="openModal('settingsModal')">
+        <span>⚙️</span> الإعدادات
+      </button>
+      <button class="btn-sidebar-logout" onclick="adminLogout()">
+        <span>🚪</span> خروج
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="admin-main">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title" id="topbarTitle">التقارير</div>
+      <div class="topbar-right">
+        <div class="topbar-time" id="topbarTime"></div>
+        <div class="admin-avatar">إ</div>
+      </div>
+    </div>
+
+    <!-- PANELS -->
+    <div class="panels-wrap">
+
+      <!-- =================== OVERVIEW =================== -->
+      <div class="panel active" id="panel-overview">
+        <div class="panel-header">
+          <h2>التقارير العامة</h2>
+          <button class="btn-refresh" onclick="loadAllData()">🔄 تحديث</button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+          <div class="stat-card stat-gold">
+            <div class="stat-icon">🎓</div>
+            <div class="stat-val" id="ov-teachers">—</div>
+            <div class="stat-label">مدرّسين نشطين</div>
+          </div>
+          <div class="stat-card stat-blue">
+            <div class="stat-icon">👥</div>
+            <div class="stat-val" id="ov-students">—</div>
+            <div class="stat-label">طلاب مسجلين</div>
+          </div>
+          <div class="stat-card stat-green">
+            <div class="stat-icon">📅</div>
+            <div class="stat-val" id="ov-bookings">—</div>
+            <div class="stat-label">حجوزات هذا الشهر</div>
+          </div>
+          <div class="stat-card stat-purple">
+            <div class="stat-icon">💰</div>
+            <div class="stat-val" id="ov-revenue">—</div>
+            <div class="stat-label">إيرادات متوقعة</div>
+          </div>
+          <div class="stat-card stat-pink">
+            <div class="stat-icon">💌</div>
+            <div class="stat-val" id="ov-inbox">—</div>
+            <div class="stat-label">رسائل جديدة</div>
+          </div>
+          <div class="stat-card stat-orange">
+            <div class="stat-icon">⏳</div>
+            <div class="stat-val" id="ov-pending">—</div>
+            <div class="stat-label">حجوزات معلّقة</div>
+          </div>
+        </div>
+
+        <!-- Recent Bookings -->
+        <div class="section-block">
+          <div class="section-block-header">
+            <h3>آخر الحجوزات</h3>
+            <button class="btn-link" onclick="switchTab('bookings', document.querySelector('[data-tab=bookings]'))">شوف الكل ←</button>
+          </div>
+          <div class="table-wrap">
+            <table class="admin-table" id="recentBookingsTable">
+              <thead>
+                <tr>
+                  <th>السريال</th><th>ولي الأمر</th><th>المدرّس</th>
+                  <th>الخطة</th><th>المبلغ</th><th>الحالة</th>
+                </tr>
+              </thead>
+              <tbody id="recentBookingsTbody">
+                <tr><td colspan="6" class="td-loading">جاري التحميل...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================== TEACHERS =================== -->
+      <div class="panel" id="panel-teachers">
+        <div class="panel-header">
+          <h2>المدرّسين</h2>
+          <div class="panel-actions">
+            <input type="text" class="search-input" id="teachersSearch"
+                   placeholder="ابحث..." oninput="filterTeachers()">
+          </div>
+        </div>
+
+        <!-- Pending Teachers -->
+        <div class="section-block" id="pendingTeachersBlock" style="display:none">
+          <div class="section-block-header">
+            <h3 style="color:var(--c-gold)">⏳ في انتظار الموافقة</h3>
+          </div>
+          <div class="teachers-cards" id="pendingTeachersCards"></div>
+        </div>
+
+        <!-- Active Teachers -->
+        <div class="section-block">
+          <div class="section-block-header">
+            <h3>المدرّسين النشطين</h3>
+            <span class="count-badge" id="teachersCountBadge">0</span>
+          </div>
+          <div class="teachers-cards" id="teachersCards">
+            <div class="td-loading">جاري التحميل...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================== TEACHER DETAIL (iframe style) =================== -->
+      <div class="panel" id="panel-teacher-detail">
+        <div class="panel-header">
+          <button class="btn-back-panel" onclick="switchTab('teachers', document.querySelector('[data-tab=teachers]'))">
+            ← رجوع للمدرّسين
+          </button>
+        </div>
+        <div class="teacher-detail-wrap" id="teacherDetailWrap"></div>
+      </div>
+
+      <!-- =================== BOOKINGS =================== -->
+      <div class="panel" id="panel-bookings">
+        <div class="panel-header">
+          <h2>الحجوزات</h2>
+          <div class="panel-actions">
+            <select class="search-input" id="bookingStatusFilter" onchange="filterBookings()">
+              <option value="all">كل الحالات</option>
+              <option value="pending">معلّقة</option>
+              <option value="confirmed">مؤكدة</option>
+              <option value="rejected">مرفوضة</option>
+            </select>
+            <input type="text" class="search-input" id="bookingsSearch"
+                   placeholder="ابحث..." oninput="filterBookings()">
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="admin-table" id="bookingsTable">
+            <thead>
+              <tr>
+                <th>السريال</th><th>ولي الأمر</th><th>واتساب</th>
+                <th>المدرّس</th><th>الخطة</th><th>الطلاب</th>
+                <th>المبلغ</th><th>الحالة</th><th>التاريخ</th><th>إجراء</th>
+              </tr>
+            </thead>
+            <tbody id="bookingsTbody">
+              <tr><td colspan="10" class="td-loading">جاري التحميل...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- =================== GROUPS =================== -->
+      <div class="panel" id="panel-groups">
+        <div class="panel-header">
+          <h2>الجروبات</h2>
+          <button class="btn-primary" onclick="openModal('addGroupModal')">+ جروب جديد</button>
+        </div>
+        <div class="groups-admin-list" id="groupsAdminList">
+          <div class="td-loading">جاري التحميل...</div>
+        </div>
+      </div>
+
+      <!-- =================== PARENTS =================== -->
+      <div class="panel" id="panel-parents">
+        <div class="panel-header">
+          <h2>أولياء الأمور</h2>
+          <input type="text" class="search-input" id="parentsSearch"
+                 placeholder="ابحث..." oninput="filterParents()">
+        </div>
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>الاسم</th><th>الإيميل</th><th>واتساب</th>
+                <th>أرقام الكاش</th><th>تاريخ التسجيل</th>
+              </tr>
+            </thead>
+            <tbody id="parentsTbody">
+              <tr><td colspan="5" class="td-loading">جاري التحميل...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- =================== INBOX =================== -->
+      <div class="panel" id="panel-inbox">
+        <div class="panel-header">
+          <h2>💌 الإنبوكس</h2>
+          <div class="panel-actions">
+            <select class="search-input" id="inboxFilter" onchange="filterInbox()">
+              <option value="all">كل الرسائل</option>
+              <option value="unread">غير مقروءة</option>
+              <option value="اقتراح">اقتراحات</option>
+              <option value="استفسار">استفسارات</option>
+              <option value="شكوى">شكاوى</option>
+            </select>
+          </div>
+        </div>
+        <div class="inbox-list" id="inboxList">
+          <div class="td-loading">جاري التحميل...</div>
+        </div>
+      </div>
+
+    </div><!-- end panels-wrap -->
+  </main>
+</div><!-- end admin-layout -->
+
+<!-- =====================================================
+     MODALS
+     ===================================================== -->
+
+<!-- Settings Modal -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal modal-settings">
+    <button class="modal-close" onclick="closeModal('settingsModal')">✕</button>
+    <h3 class="modal-title">⚙️ إعدادات الصفحة</h3>
+
+    <div class="settings-section">
+      <div class="settings-label">الوضع</div>
+      <div class="theme-options">
+        <button class="theme-opt" data-theme="dark"  onclick="setTheme('dark')">🌙 داكن</button>
+        <button class="theme-opt" data-theme="light" onclick="setTheme('light')">☀️ فاتح</button>
+        <button class="theme-opt" data-theme="soft"  onclick="setTheme('soft')">🌸 ناعم</button>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-label">اللون الأساسي</div>
+      <div class="accent-options">
+        <button class="accent-opt" data-accent="gold"   onclick="setAccent('gold')"   style="background:#F5C842"></button>
+        <button class="accent-opt" data-accent="blue"   onclick="setAccent('blue')"   style="background:#60A5FA"></button>
+        <button class="accent-opt" data-accent="green"  onclick="setAccent('green')"  style="background:#4ADE80"></button>
+        <button class="accent-opt" data-accent="purple" onclick="setAccent('purple')" style="background:#A78BFA"></button>
+        <button class="accent-opt" data-accent="pink"   onclick="setAccent('pink')"   style="background:#F472B6"></button>
+        <button class="accent-opt" data-accent="orange" onclick="setAccent('orange')" style="background:#FB923C"></button>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-label">حجم الخط</div>
+      <div class="size-options">
+        <button class="size-opt" data-size="sm" onclick="setSize('sm')">صغير أ</button>
+        <button class="size-opt active" data-size="md" onclick="setSize('md')">متوسط أ</button>
+        <button class="size-opt" data-size="lg" onclick="setSize('lg')">كبير أ</button>
+      </div>
+    </div>
+
+    <button class="modal-btn" onclick="closeModal('settingsModal')">حفظ الإعدادات ✓</button>
+  </div>
+</div>
+
+<!-- Teacher Edit Modal -->
+<div class="modal-overlay" id="teacherEditModal">
+  <div class="modal modal-teacher-edit">
+    <button class="modal-close" onclick="closeModal('teacherEditModal')">✕</button>
+    <h3 class="modal-title">تعديل بيانات المدرّس</h3>
+    <div id="teacherEditForm"></div>
+    <button class="modal-btn" onclick="saveTeacherEdit()">💾 حفظ التعديلات</button>
+  </div>
+</div>
+
+<!-- Add Group Modal -->
+<div class="modal-overlay" id="addGroupModal">
+  <div class="modal modal-add-group">
+    <button class="modal-close" onclick="closeModal('addGroupModal')">✕</button>
+    <h3 class="modal-title">➕ جروب جديد</h3>
+    <div class="add-group-form">
+      <select class="modal-input" id="ag-teacher">
+        <option value="">اختار المدرّس...</option>
+      </select>
+      <input type="text" class="modal-input" id="ag-name" placeholder="اسم الجروب">
+      <input type="text" class="modal-input" id="ag-schedule" placeholder="الموعد (مثال: السبت 5م)">
+      <div class="students-add-section">
+        <div class="settings-label">الطلاب</div>
+        <div id="studentsAddList"></div>
+        <button class="btn-add-student" onclick="addStudentRow()">+ إضافة طالب</button>
+      </div>
+    </div>
+    <button class="modal-btn" onclick="saveNewGroup()">💾 إنشاء الجروب</button>
+    <div class="modal-error" id="addGroupError"></div>
+  </div>
+</div>
+
+<!-- Inbox Message Modal -->
+<div class="modal-overlay" id="inboxMessageModal">
+  <div class="modal modal-inbox">
+    <button class="modal-close" onclick="closeModal('inboxMessageModal')">✕</button>
+    <div id="inboxMessageContent"></div>
+  </div>
+</div>
+
+<script src="Pio-A-Hub.js"></script>
+</body>
+</html>
