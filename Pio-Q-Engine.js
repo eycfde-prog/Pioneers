@@ -3,7 +3,7 @@
 // محرك توجيه الأسئلة
 // ============================================================
 
-const API_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+const API_URL = 'https://script.google.com/macros/s/AKfycby8mKLySPt58BXV8TKnAh5G7REKJCYYW5EXsKQoSKRfzgkZd2YpcCQb-4Zss8Bh_9g-/exec';
 
 // ============================================================
 // CONSTANTS
