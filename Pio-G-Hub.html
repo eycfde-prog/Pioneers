@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ألعاب تعليمية — Pioneers Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark:   #080810;
+  --surface:#1C1C30;
+  --border: rgba(255,255,255,0.1);
+  --gold:   #F5C842;
+  --text:   #EEEEf8;
+  --dim:    #8888AA;
+  --font:   'Tajawal', sans-serif;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body { font-family:var(--font); background:var(--dark); color:var(--text); direction:rtl; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+
+.coming-soon {
+  text-align: center;
+  padding: 40px 24px;
+  max-width: 500px;
+}
+
+.cs-icon { font-size: 80px; margin-bottom: 24px; animation: bounce 2s ease-in-out infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+.cs-title { font-size: 32px; font-weight: 900; color: var(--gold); margin-bottom: 12px; }
+.cs-desc  { font-size: 16px; color: var(--dim); line-height: 1.8; margin-bottom: 32px; }
+
+.games-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px,1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.game-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 14px;
+  text-align: center;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.game-card .game-icon  { font-size: 32px; margin-bottom: 8px; }
+.game-card .game-name  { font-size: 13px; font-weight: 700; }
+.game-card .game-badge {
+  display: inline-block;
+  background: rgba(245,200,66,.12);
+  color: var(--gold);
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 6px;
+  border: 1px solid rgba(245,200,66,.2);
+}
+
+.btn-back {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--dim);
+  padding: 12px 28px;
+  border-radius: 20px;
+  font-family: var(--font);
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .3s;
+  display: inline-block;
+}
+
+.btn-back:hover { border-color:var(--gold); color:var(--gold); }
+</style>
+</head>
+<body>
+<div class="coming-soon">
+  <div class="cs-icon">🎮</div>
+  <div class="cs-title">الألعاب التعليمية</div>
+  <div class="cs-desc">
+    جاري تطوير ألعاب تعليمية ممتعة ومفيدة<br>
+    هتساعد الطلاب يتعلموا وهم بيلعبوا!
+  </div>
+
+  <div class="games-preview">
+    <div class="game-card">
+      <div class="game-icon">🔤</div>
+      <div class="game-name">كلمات متقاطعة</div>
+      <div class="game-badge">قريباً</div>
+    </div>
+    <div class="game-card">
+      <div class="game-icon">🔗</div>
+      <div class="game-name">تطابق الكلمات</div>
+      <div class="game-badge">قريباً</div>
+    </div>
+    <div class="game-card">
+      <div class="game-icon">🏆</div>
+      <div class="game-name">سباق الإجابات</div>
+      <div class="game-badge">قريباً</div>
+    </div>
+    <div class="game-card">
+      <div class="game-icon">🧩</div>
+      <div class="game-name">بازل المعلومات</div>
+      <div class="game-badge">قريباً</div>
+    </div>
+  </div>
+
+  <a href="javascript:history.back()" class="btn-back">← رجوع</a>
+</div>
+</body>
+</html>
