@@ -3,7 +3,7 @@
 // محرك توجيه الأسئلة
 // ============================================================
 
-const API_URL = 'https://script.google.com/macros/s/AKfycbzIlDxMt7YXTVbp4StJq2-p12PTcawKyj90lAxwEnZPKPvqMUNV3bgxpEJVo0dMlvBd/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbwvBYpe5KIR-F5lsZzio7MNRc1NwdsSQxm75YM8mo8g3NV9k3VXM-9A307q0cgTDu1P/exec';
 
 // ============================================================
 // CONSTANTS
