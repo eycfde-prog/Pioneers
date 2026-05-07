@@ -2,7 +2,7 @@
 // PIONEERS ACADEMY — Pio-Hub.js
 // ============================================================
 
-const API_URL   = 'https://script.google.com/macros/s/AKfycbz9wUHs0OSZUvHWi0Q5bPYNpONfq_REQDQ-JKs-n1OTiKGzDpsK_QtviACmlWvOjDps/exec'; // ← هتحط الرابط هنا
+const API_URL   = 'YOUR_APPS_SCRIPT_URL_HERE'; // ← هتحط الرابط هنا
 const CACHE_KEY = 'pioneers_teachers';
 const CACHE_TTL = 60 * 60 * 1000; // ساعة بالـ ms
 
