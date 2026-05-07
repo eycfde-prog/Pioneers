@@ -2,7 +2,7 @@
 // PIONEERS ACADEMY — Pio-T-Hub.js
 // ============================================================
 
-const API_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+const API_URL = 'https://script.google.com/macros/s/AKfycbzIlDxMt7YXTVbp4StJq2-p12PTcawKyj90lAxwEnZPKPvqMUNV3bgxpEJVo0dMlvBd/exec';
 
 // ============================================================
 // STATE
