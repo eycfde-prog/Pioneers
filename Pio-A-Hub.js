@@ -2,7 +2,7 @@
 // PIONEERS ACADEMY — Pio-A-Hub.js
 // ============================================================
 
-const API_URL       = 'https://script.google.com/macros/s/AKfycbwvBYpe5KIR-F5lsZzio7MNRc1NwdsSQxm75YM8mo8g3NV9k3VXM-9A307q0cgTDu1P/execc';
+const API_URL       = 'https://script.google.com/macros/s/AKfycbwvBYpe5KIR-F5lsZzio7MNRc1NwdsSQxm75YM8mo8g3NV9k3VXM-9A307q0cgTDu1P/exec';
 const ADMIN_PASSWORD = 'pioneers2025'; // ← غيّريه لباسورد قوي
 
 // ============================================================
