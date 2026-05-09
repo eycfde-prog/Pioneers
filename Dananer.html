@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مس دنانير | معلمة تأسيس اللغة الإنجليزية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal-50: #E1F5EE;
+    --teal-100: #9FE1CB;
+    --teal-200: #5DCAA5;
+    --teal-400: #1D9E75;
+    --teal-600: #0F6E56;
+    --teal-800: #085041;
+    --cream: #FAF8F4;
+    --cream-dark: #F2EDE4;
+    --warm-white: #FFFCF8;
+    --text-dark: #1C2B26;
+    --text-mid: #3D5249;
+    --text-light: #6B8A7A;
+    --border: rgba(15,110,86,0.12);
+    --shadow-soft: 0 4px 24px rgba(15,110,86,0.08);
+    --shadow-card: 0 8px 40px rgba(15,110,86,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    z-index: 100;
+    padding: 1rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250,248,244,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--teal-600);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo span {
+    color: var(--teal-400);
+    font-weight: 300;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: var(--teal-400);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--teal-600); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--teal-600);
+    color: white !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--teal-400) !important; transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 5rem 4rem;
+    position: relative;
+    overflow: hidden;
+    gap: 4rem;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, var(--teal-50) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; right: 200px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, var(--teal-50) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--teal-50);
+    border: 1px solid var(--teal-100);
+    color: var(--teal-600);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    animation: fadeInDown 0.6s ease;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--teal-400);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  .hero-title {
+    font-size: 3.8rem;
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    animation: fadeInUp 0.7s ease 0.1s both;
+  }
+
+  .hero-title .accent {
+    color: var(--teal-400);
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.7s ease 0.2s both;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 0.7s ease 0.3s both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    animation: fadeInUp 0.7s ease 0.4s both;
+  }
+
+  .btn-primary {
+    background: var(--teal-600);
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Cairo', sans-serif;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(15,110,86,0.3);
+  }
+  .btn-primary:hover {
+    background: var(--teal-400);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(15,110,86,0.35);
+  }
+
+  .btn-secondary {
+    color: var(--teal-600);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .btn-secondary:hover { gap: 0.7rem; }
+
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    animation: fadeInUp 0.7s ease 0.5s both;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--teal-600);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 0.25rem;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: var(--border);
+    align-self: stretch;
+  }
+
+  /* ===== HERO IMAGE ===== */
+  .hero-image-wrap {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    animation: fadeInRight 0.8s ease 0.2s both;
+  }
+
+  .hero-image-frame {
+    position: relative;
+    width: 400px;
+    height: 500px;
+  }
+
+  .hero-img-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--teal-50);
+    border-radius: 60% 40% 55% 45% / 50% 45% 55% 50%;
+    animation: morphBg 8s ease-in-out infinite;
+  }
+
+  @keyframes morphBg {
+    0%, 100% { border-radius: 60% 40% 55% 45% / 50% 45% 55% 50%; }
+    33% { border-radius: 45% 55% 45% 55% / 55% 45% 55% 45%; }
+    66% { border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%; }
+  }
+
+  .hero-img-placeholder {
+    position: absolute;
+    inset: 20px;
+    border-radius: 50% 45% 55% 45% / 50% 50% 50% 50%;
+    background: linear-gradient(145deg, var(--teal-100), var(--teal-200));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: inherit;
+  }
+
+  .hero-img-placeholder .img-initials {
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--teal-600);
+    opacity: 0.4;
+  }
+
+  .hero-info-cards {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+  }
+
+  .info-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 0.75rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    box-shadow: var(--shadow-soft);
+    flex: 1;
+  }
+
+  .card-icon {
+    width: 34px; height: 34px;
+    background: var(--teal-50);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .card-icon-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-icon-label {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+
+  /* ===== SECTION SHARED ===== */
+  section {
+    padding: 6rem 5rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    background: var(--teal-50);
+    color: var(--teal-600);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+  }
+
+  .section-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    font-size: 1.05rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    max-width: 560px;
+  }
+
+  /* ===== ABOUT ===== */
+  .about {
+    background: var(--warm-white);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-card-main {
+    background: var(--cream);
+    border-radius: 24px;
+    padding: 2.5rem;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-card-main::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--teal-50);
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+
+  .about-quote {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-badge-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: var(--teal-50);
+    color: var(--teal-600);
+    border: 1px solid var(--teal-100);
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .about-content {}
+
+  .about-text {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--teal-400);
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .timeline-dot::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 5px;
+    width: 2px;
+    height: 30px;
+    background: var(--teal-100);
+  }
+
+  .timeline-item:last-child .timeline-dot::before { display: none; }
+
+  .timeline-content {}
+
+  .timeline-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+  }
+
+  .timeline-sub {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 0.15rem;
+  }
+
+  /* ===== METHOD ===== */
+  .method {
+    background: var(--cream);
+  }
+
+  .method-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+
+  .method-header .section-desc {
+    margin: 0 auto;
+  }
+
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .method-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .method-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .method-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal-200), var(--teal-400));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: right;
+  }
+
+  .method-card:hover::after { transform: scaleX(1); }
+
+  .method-icon {
+    width: 54px; height: 54px;
+    background: var(--teal-50);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .method-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.6rem;
+  }
+
+  .method-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+
+  /* ===== COURSES ===== */
+  .courses {
+    background: var(--teal-600);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .courses::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 50%;
+  }
+
+  .courses::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -50px;
+    width: 400px; height: 400px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+
+  .courses .section-tag {
+    background: rgba(255,255,255,0.15);
+    color: var(--teal-100);
+  }
+
+  .courses .section-title {
+    color: white;
+  }
+
+  .courses .section-desc {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .course-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .course-card:hover {
+    background: rgba(255,255,255,0.13);
+    transform: translateY(-3px);
+  }
+
+  .course-level {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: var(--teal-100);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+
+  .course-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.6rem;
+  }
+
+  .course-desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .course-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .course-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .course-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    color: var(--teal-600);
+    padding: 0.65rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .course-cta:hover {
+    background: var(--teal-50);
+    transform: translateY(-1px);
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials {
+    background: var(--warm-white);
+  }
+
+  .testimonials-header {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 3rem;
+  }
+
+  .testimonials-header .section-desc { margin: 0 auto; }
+
+  .testimonials-placeholder {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .testimonial-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.75rem;
+    position: relative;
+  }
+
+  .testimonial-quote {
+    font-size: 2rem;
+    color: var(--teal-200);
+    line-height: 1;
+    font-family: Georgia, serif;
+    margin-bottom: 0.5rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .author-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--teal-50);
+    border: 2px solid var(--teal-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--teal-600);
+  }
+
+  .author-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+  }
+
+  .author-sub {
+    font-size: 0.78rem;
+    color: var(--text-light);
+  }
+
+  .stars {
+    color: #F4A017;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ===== CONTACT / FOOTER ===== */
+  footer {
+    background: var(--text-dark);
+    color: white;
+    padding: 4rem 5rem 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--teal-200);
+    margin-bottom: 1rem;
+  }
+
+  .footer-brand-desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social-link {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: rgba(255,255,255,0.6);
+    font-size: 1.1rem;
+    transition: all 0.2s;
+  }
+
+  .social-link:hover {
+    background: var(--teal-600);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .footer-col-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--teal-200); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--teal-200); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">مس <span>دنانير</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">عني</a></li>
+    <li><a href="#method">طريقتي</a></li>
+    <li><a href="#courses">الكورسات</a></li>
+    <li><a href="#testimonials">آراء الأهالي</a></li>
+    <li><a href="#blog">المدونة</a></li>
+    <li><a href="#courses" class="nav-cta">احجز دلوقتي</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">معلمة تأسيس لغة إنجليزية للأطفال</div>
+    <h1 class="hero-title">
+      مس <span class="accent">دنانير</span>
+    </h1>
+    <p class="hero-subtitle">دينا علاء الدين</p>
+    <p class="hero-desc">
+      بتؤمن إن كل طفل يقدر يتعلم لو وصلتله المعلومة بالطريقة الصح — بتجمع بين الدفا والاحترافية عشان تخلي اللغة الإنجليزية حاجة الطفل يحبها مش يخاف منها.
+    </p>
+    <div class="hero-actions">
+      <a href="#courses" class="btn-primary">احجز كورسك دلوقتي ←</a>
+      <a href="#about" class="btn-secondary">اعرف أكتر ←</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">+5</div>
+        <div class="stat-label">سنوات خبرة</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">طفل استفاد</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num">أونلاين</div>
+        <div class="stat-label">متاح من أي مكان</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-image-wrap">
+    <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
+      <div class="hero-image-frame">
+        <div class="hero-img-bg"></div>
+        <div class="hero-img-placeholder">
+          <img src="Person.png" alt="مس دنانير" onerror="this.style.display='none'; this.parentElement.querySelector('.img-initials').style.display='flex';">
+          <span class="img-initials" style="display:none;">م د</span>
+        </div>
+      </div>
+      <div class="hero-info-cards">
+        <div class="info-card">
+          <div class="card-icon">🎮</div>
+          <div class="card-icon-text">
+            <span class="card-icon-label">أسلوب تعليمي</span>
+            <span>Gamification</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">🤖</div>
+          <div class="card-icon-text">
+            <span class="card-icon-label">بتستخدم</span>
+            <span>الذكاء الاصطناعي</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">✨</div>
+          <div class="card-icon-text">
+            <span class="card-icon-label">خبرة</span>
+            <span>+5 سنوات</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-card-main">
+        <p class="about-quote">
+          "كل طفل موهوب — المهمة مش إنك تعلّمه، المهمة إنك تفتحله الباب."
+        </p>
+        <div class="about-badge-row">
+          <span class="badge">Pioneers Academy</span>
+          <span class="badge">تأسيس إنجليزي</span>
+          <span class="badge">أطفال</span>
+        </div>
+      </div>
+
+      <div class="about-timeline" style="margin-top: 2rem;">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Pioneers Academy</div>
+            <div class="timeline-sub">معلمة تأسيس — الوقت الحالي</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">مدارس الواحة الدولية</div>
+            <div class="timeline-sub">معلمة لغة إنجليزية — سابقاً</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-content reveal">
+      <span class="section-tag">من أنا</span>
+      <h2 class="section-title">مس دنانير — أكتر من مجرد معلمة</h2>
+      <p class="about-text">
+        مس دنانير هي المعلمة دينا علاء الدين، متخصصة في تأسيس اللغة الإنجليزية للأطفال بخبرة تتجاوز <strong>5 سنوات</strong> في التعليم.
+      </p>
+      <p class="about-text">
+        بدأت مسيرتها في <strong>مدارس الواحة الدولية</strong>، وتواصل شغفها حالياً مع <strong>Pioneers Academy</strong>، حاملةً معها رؤية واضحة: إن كل طفل يقدر يتعلم لو وصلتله المعلومة بالطريقة الصح.
+      </p>
+      <p class="about-text">
+        أسلوبها مختلف — بتؤمن إن التعلم لازم يكون <strong>ممتع ومحفّز</strong>، فبتدمج بين تبسيط المعلومات والتكنولوجيا والذكاء الاصطناعي والـ Gamification عشان تخلي الطفل مش بس يتعلم، لكن يحب إنه يتعلم.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="method" id="method">
+  <div class="method-header reveal">
+    <span class="section-tag">طريقتي في التدريس</span>
+    <h2 class="section-title">ليه أسلوب مس دنانير مختلف؟</h2>
+    <p class="section-desc">بتجمع بين أحدث أساليب التعليم وأدوات التكنولوجيا عشان تقدم تجربة تعليمية فريدة لكل طفل.</p>
+  </div>
+
+  <div class="method-grid">
+    <div class="method-card reveal">
+      <div class="method-icon">🎯</div>
+      <h3 class="method-title">تبسيط المعلومات</h3>
+      <p class="method-desc">بتحول المفاهيم الصعبة لحاجات بسيطة وممتعة تناسب عقل الطفل وتتبق في دماغه.</p>
+    </div>
+    <div class="method-card reveal">
+      <div class="method-icon">🎮</div>
+      <h3 class="method-title">Gamification</h3>
+      <p class="method-desc">بتحول الدرس لعبة — الطفل بيتعلم وهو بيلعب ومش حاسس إنه بيذاكر أصلاً.</p>
+    </div>
+    <div class="method-card reveal">
+      <div class="method-icon">🤖</div>
+      <h3 class="method-title">الذكاء الاصطناعي</h3>
+      <p class="method-desc">بتستخدم أحدث أدوات الـ AI عشان تقدم محتوى تعليمي تفاعلي ومخصص لكل طفل.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses" id="courses">
+  <span class="section-tag">الكورسات</span>
+  <h2 class="section-title">كورسات أونلاين مع مس دنانير</h2>
+  <p class="section-desc">كورسات تأسيس اللغة الإنجليزية للأطفال — أونلاين من أي مكان مع Pioneers Academy.</p>
+
+  <div class="courses-grid">
+    <div class="course-card">
+      <span class="course-level">المستوى الأول</span>
+      <h3 class="course-title">تأسيس الحروف والأصوات</h3>
+      <p class="course-desc">للأطفال اللي بيبدأوا من الأول — بتتعلم الحروف وأصواتها بطريقة ممتعة ومبتكرة.</p>
+      <div class="course-meta">
+        <div class="course-meta-item">🌐 أونلاين</div>
+        <div class="course-meta-item">👶 3-6 سنوات</div>
+      </div>
+      <a href="https://www.facebook.com/share/1Kwv97ojTc/" target="_blank" class="course-cta">احجز دلوقتي ←</a>
+    </div>
+
+    <div class="course-card">
+      <span class="course-level">المستوى الثاني</span>
+      <h3 class="course-title">القراءة والكتابة</h3>
+      <p class="course-desc">للأطفال اللي عندهم أساس — بنطور مهارة القراءة والكتابة بأسلوب تفاعلي وممتع.</p>
+      <div class="course-meta">
+        <div class="course-meta-item">🌐 أونلاين</div>
+        <div class="course-meta-item">👧 6-10 سنوات</div>
+      </div>
+      <a href="https://www.facebook.com/share/1Kwv97ojTc/" target="_blank" class="course-cta">احجز دلوقتي ←</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-header reveal">
+    <span class="section-tag">آراء الأهالي</span>
+    <h2 class="section-title">بيقولوا إيه عن مس دنانير؟</h2>
+    <p class="section-desc">آراء حقيقية من أهالي الأطفال اللي اتعلموا مع مس دنانير.</p>
+  </div>
+
+  <div class="testimonials-placeholder">
+    <!-- Placeholder cards - هيتملوا من Google Sheets لاحقاً -->
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">ابني كان بيخاف من الإنجليزي، دلوقتي بيحبه وبيطلب يذاكر. مس دنانير عندها أسلوب مختلف فعلاً.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">أم</div>
+        <div>
+          <div class="author-name">أم أحمد</div>
+          <div class="author-sub">والدة طالب — المستوى الأول</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">طريقة التدريس رائعة والاهتمام بكل طفل على حدة واضح جداً. ننصح بيها بشدة.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">أب</div>
+        <div>
+          <div class="author-name">أبو كريم</div>
+          <div class="author-sub">والد طالبة — المستوى الثاني</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">بنتي بقت تحب الإنجليزي وبتذاكر لوحدها! ده كان مستحيل قبل مس دنانير.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">أم</div>
+        <div>
+          <div class="author-name">أم سارة</div>
+          <div class="author-sub">والدة طالبة — المستوى الأول</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">مس دنانير</div>
+      <p class="footer-brand-desc">معلمة تأسيس اللغة الإنجليزية للأطفال — بتؤمن إن كل طفل يقدر يتعلم لو وصلتله المعلومة بالطريقة الصح.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/1Kwv97ojTc/" target="_blank" class="social-link" title="فيسبوك">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer-col-title">روابط سريعة</h4>
+      <ul class="footer-links">
+        <li><a href="#about">من أنا</a></li>
+        <li><a href="#method">طريقتي</a></li>
+        <li><a href="#courses">الكورسات</a></li>
+        <li><a href="#testimonials">آراء الأهالي</a></li>
+        <li><a href="#blog">المدونة</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="footer-col-title">تواصل معايا</h4>
+      <ul class="footer-links">
+        <li><a href="https://www.facebook.com/share/1Kwv97ojTc/" target="_blank">صفحة الفيسبوك</a></li>
+        <li><a href="#courses">احجز كورس</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 مس دنانير — جميع الحقوق محفوظة</span>
+    <span>صُنع بـ ❤️</span>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 50 ? '0 4px 24px rgba(15,110,86,0.1)' : 'none';
+});
+</script>
+
+</body>
+</html>
